@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
-
+import { NgbdModalBasic } from '../modal-basic/modal-basic.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-my-scatter-chart',
   templateUrl: './my-scatter-chart.component.html',
@@ -28,9 +29,37 @@ export class MyScatterChartComponent implements OnInit {
   ];
   public scatterChartType: ChartType = 'scatter';
 
-  constructor() { }
+  constructor( public modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  private clickEvent(e:any):void {
+  if(e.active.length > 0) {
+  console.log("Index", e.active[0]._index);
+  console.log("Data" , e.active[0]._chart.config.data.datasets[0].data[e.active[0]._index]);
+  console.log("Label" , e.active[0]._chart.config.data.labels[e.active[0]._index]);
+  var data = {
+    value: e.active[0]._chart.config.data.datasets[0].data[e.active[0]._index].y,
+    label: e.active[0]._chart.config.data.datasets[0].data[e.active[0]._index].x,
+    }
+  this.openModal(data);
+
+  }
+  }
+
+  openModal(data){
+
+    const modalRef = this.modalService.open(NgbdModalBasic);
+    modalRef.componentInstance.data = data;
+    modalRef.result.then((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
+    // modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+    //   console.log(receivedEntry);
+    // })
   }
 
 }

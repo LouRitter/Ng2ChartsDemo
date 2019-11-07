@@ -5,6 +5,8 @@
     [chartType]="pieChartType"
     [options]="pieChartOptions"
     [plugins]="pieChartPlugins"
-    [legend]="pieChartLegend">
+    [legend]="pieChartLegend"
+    (chartClick)="clickEvent($event)">
+
   </canvas>
 </div>

@@ -2,6 +2,8 @@
   <canvas baseChart
     [datasets]="scatterChartData"
     [options]="scatterChartOptions"
-    [chartType]="scatterChartType">
+    [chartType]="scatterChartType"
+    (chartClick)="clickEvent($event)">
+
   </canvas>
 </div>
