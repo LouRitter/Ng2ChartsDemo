@@ -1,6 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<h1>Angular Router</h1>
+<nav>
+  <a routerLink="/line" routerLinkActive="active">Line</a>
+  <a routerLink="/pie" routerLinkActive="active">Pie</a>
+  <a routerLink="/bar" routerLinkActive="active">Bar</a>
+  <a routerLink="/scatter" routerLinkActive="active">Scatter</a>
 
-  <app-my-line-chart></app-my-line-chart>
-  <app-my-pie-chart></app-my-pie-chart>
-  <app-my-bar-chart></app-my-bar-chart>
-  <app-my-scatter-chart></app-my-scatter-chart>
+</nav>
+<div [@routerTransition]="getState(o)" (swiperight)="myswipeRight(getState(o))" (swipeleft)="myswipeLeft(getState(o))" >
+   <router-outlet #o="outlet"></router-outlet>
+</div>

@@ -34,7 +34,7 @@ export class MyScatterChartComponent implements OnInit {
   ngOnInit() {
   }
 
-  private clickEvent(e:any):void {
+  public clickEvent(e:any):void {
   if(e.active.length > 0) {
   console.log("Index", e.active[0]._index);
   console.log("Data" , e.active[0]._chart.config.data.datasets[0].data[e.active[0]._index]);
